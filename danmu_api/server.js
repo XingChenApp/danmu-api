@@ -519,7 +519,7 @@ async function startServer() {
   }
 
   // 启动主业务服务器（默认 9321，可通过 DANMU_API_PORT 覆盖）
-  const configuredMainPort = Number.parseInt(process.env.DANMU_API_PORT ?? '', 10);
+  const configuredMainPort = Number.parseInt(process.env.DANMU_API_PORT ?? process.env.PORT ?? '', 10);
   const mainPort = Number.isNaN(configuredMainPort) ? 9321 : configuredMainPort;
   mainServer = createServer();
   const mainBinding = await listenOnAllInterfaces(mainServer, mainPort, {
